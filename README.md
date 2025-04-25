@@ -61,6 +61,10 @@ lib/
 │   ├── loading_indicator.dart
 │   ├── empty_state_message.dart
 
+test/
+├── unit_tests/             # Testes unitários com mocks
+├── integration_tests/      # Testes de integração com APIs reais
+├── helpers/               # Classes auxiliares para testes
 ```
 
 
@@ -84,6 +88,58 @@ lib/
 
 - **Organização Modular**:
   - Cada responsabilidade separada em pasta própria (app, core, models, viewmodels, views, widgets).
+
+---
+
+## 🧪 Testes
+
+O projeto implementa uma estratégia de testes abrangente, com diferentes tipos de testes:
+
+### Testes Unitários
+
+- Localizados em `test/unit_tests/`
+- Usam **Mocktail** para simular dependências externas
+- Testam componentes isoladamente (serviços, viewmodels, etc.)
+- Executados rapidamente sem dependências externas
+- Verificam o comportamento esperado de classes individuais
+
+### Testes de Integração
+
+- Localizados em `test/integration_tests/`
+- Realizam chamadas reais às APIs (NewsData.io e Gemini)
+- Verificam a integração e compatibilidade com serviços externos
+- Controlados pela constante `RUN_REAL_API_CALLS` (desativada por padrão)
+- Requerem chaves de API válidas no arquivo `.env.test`
+
+### Como Executar os Testes
+
+**Testes Unitários:**
+```bash
+flutter test test/unit_tests/
+```
+
+**Testes de Integração:**
+Para executar testes de integração, primeiro configure o arquivo `.env.test` com chaves válidas e ative os testes:
+
+1. Abra os arquivos de teste desejados em `test/integration_tests/`
+2. Altere a constante `RUN_REAL_API_CALLS = true`
+3. Execute:
+```bash
+flutter test test/integration_tests/
+```
+
+**Todos os testes:**
+```bash
+flutter test
+```
+
+### Boas Práticas Implementadas
+
+- Separação clara entre testes unitários e de integração
+- Uso de mocks para isolar componentes e evitar chamadas reais em testes unitários
+- Configuração de ambiente de teste via `TestDotEnv.setup()`
+- Testes de diferentes cenários (sucesso, erro, dados vazios)
+- Verificações detalhadas do comportamento esperado
 
 ---
 

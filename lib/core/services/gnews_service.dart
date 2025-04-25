@@ -12,15 +12,26 @@ class NewsDataService {
 
   NewsDataService(this._http);
 
-  Future<List<NewsArticle>> fetchTopHeadlines() async {
+  Future<List<NewsArticle>> fetchTopHeadlines(
+      {String? category, String? query}) async {
     try {
+      final Map<String, dynamic> queryParams = {
+        'apikey': _apiKey,
+        'country': 'br',
+        'language': 'pt',
+      };
+
+      if (category != null && category.isNotEmpty) {
+        queryParams['category'] = category;
+      }
+
+      if (query != null && query.isNotEmpty) {
+        queryParams['q'] = query;
+      }
+
       final response = await _http.get(
         '$_baseUrl/latest',
-        queryParameters: {
-          'apikey': _apiKey,
-          'country': 'br',
-          'language': 'pt',
-        },
+        queryParameters: queryParams,
       );
 
       final List articles = response.data['results'];
