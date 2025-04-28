@@ -3,6 +3,10 @@
 Resumo.AI é um aplicativo Flutter que **busca notícias globais** e **gera resumos inteligentes** usando a API do **Gemini** (Google)!
 O objetivo é trazer informações rápidas, resumidas e relevantes para o usuário em poucos segundos.
 
+
+https://github.com/user-attachments/assets/06359e20-e4dc-4192-bdc6-23e3447311f0
+
+
 ---
 
 ## ✨ Funcionalidades
